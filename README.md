@@ -83,7 +83,8 @@ Worker::runAll();
 test.php
 ```php
 require_once './Workerman/Autoloader.php';
-use \Workerman\WebServer;
+use Workerman\WebServer;
+use Workerman\Worker;
 
 // WebServer
 $web = new WebServer("http://0.0.0.0:80");
@@ -258,7 +259,7 @@ $worker = new Worker('tcp://0.0.0.0:1234');
 $worker->count=3;
 $worker->onMessage = function($connection, $data)
 {
-    $connection->send("HTTP/1.1 200 OK\r\nConnection: keep-alive\r\nServer: workerman\1.1.4\r\n\r\nhello");
+    $connection->send("HTTP/1.1 200 OK\r\nConnection: keep-alive\r\nServer: workerman\r\nContent-Length: 5\r\n\r\nhello");
 };
 Worker::runAll();
 ```
